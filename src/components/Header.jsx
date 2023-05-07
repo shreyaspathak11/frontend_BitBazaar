@@ -18,6 +18,7 @@ import {
   useColorMode,
   Switch,
   useColorModeValue,
+  Avatar,
 } from "@chakra-ui/react";
 import { Link } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
@@ -54,7 +55,7 @@ function Navbar() {
       {/* Mobile view */}
       {isMobile ?
         <>
-        
+          <Avatar size="sm" name="John Doe" src="https://bit.ly/dan-abramov" />
           <IconButton icon={<FiMenu />} aria-label="Open menu" variant="ghost" onClick={onOpen} />
           <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
             <DrawerOverlay />
@@ -66,7 +67,7 @@ function Navbar() {
                   <Button variant="ghost" onClick={onClose}><Link to="/">Home</Link></Button>
                   <Button variant="ghost" onClick={onClose}><Link to="/coins">Coins</Link></Button>
                   <Button variant="ghost" onClick={onClose}><Link to="/exchanges">Exchange</Link></Button>
-                  <Button variant="solid" color="#27E1C1"><Link to="/register">Register</Link></Button>
+
                   <Switch colorScheme="teal" isChecked={colorMode === "dark"} onChange={toggleColorMode} />
                 </VStack>
               </DrawerBody>
@@ -79,7 +80,7 @@ function Navbar() {
           <Button variant="ghost"><Link to="/">Home</Link></Button>
           <Button variant="ghost"><Link to="/coins">Coins</Link></Button>
           <Button variant="ghost"><Link to="/exchanges">Exchange</Link></Button>
-          <Button variant="solid" color="#27E1C1"><Link to="/register">Register</Link></Button>
+          <Avatar size="sm" name="John Doe" src="https://bit.ly/dan-abramov" />
           <Switch colorScheme="teal" isChecked={colorMode === "dark"} onChange={toggleColorMode} />
         </HStack>
       }

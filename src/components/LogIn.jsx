@@ -9,19 +9,19 @@ import {
   Text,
   useColorModeValue,
   Link,
-  IconButton,
+  useToast,
   Flex,
+  VStack,
 } from '@chakra-ui/react';
-import { FaFacebook, FaGoogle } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import {  FaGoogle } from 'react-icons/fa';
 
 
 
 const Login = () => {
   const bg = useColorModeValue('linear(to-b, teal.100, teal.200)', 'gray.900');
   const textColor = useColorModeValue('gray.700', 'gray.100');
+  const toast = useToast();
 
-  const navigate = useNavigate();
   
   const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -44,15 +44,20 @@ const Login = () => {
 
 		if (data.user) {
 			localStorage.setItem('token', data.user)
-			alert('Login successful')
-			window.location.href = '/home'
+			toast({
+        title: "Login successful!",
+        status: "success",
+        duration: 30000,
+        isClosable: true,
+      });
+			window.location.href = '/'
 		} else {
 			alert('Please check your username and password')
 		}
 	}
 
   return (
-    <Flex minH="100vh" align="center" justify="center">
+    <Flex minH="100vh" align="center" justify="center" textColor={textColor} fontFamily={"Alkatra"}>
       <Container
         maxW={{ base: 'xs', md: 'md' }}
         bg={bg}
@@ -61,11 +66,11 @@ const Login = () => {
         p={6}
         direction="column"
       >
-        <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} textAlign="center" mb={5}>
+        <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} textAlign="center" fontFamily={"Alkatra"} mb={5}>
           Login to Your Account
         </Heading>
         <Box mt={8} mb={3}>
-          <Input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} oplaceholder="Email Address" size="lg" rounded="full" />
+          <Input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" size="lg" rounded="full" />
         </Box>
         <Box mb={6}>
           <Input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" size="lg" rounded="full" />
@@ -81,33 +86,30 @@ const Login = () => {
                 Sign Up
               </Link>
             </Text>
+
             <Link color="teal.500" href="#" fontWeight="semibold">
               Forgot Password?
             </Link>
           </Stack>
         </Stack>
         <Box mt={5}>
-          <Text fontWeight="semibold" mb={3}>
+          <Text fontWeight="semibold" mb={3} textAlign={"center"}>
             Or sign in with
           </Text>
-          <Stack direction="row" spacing={4}>
-            <IconButton
-              aria-label="Sign in with Facebook"
-              icon={<FaFacebook />}
-              size="md"
-              variant="ghost"
-              _hover={{ bg: 'teal.500', color: 'white' }}
-              rounded={'full'}
-            />
-            <IconButton
-              aria-label="Sign in with Google"
-              icon={<FaGoogle />}
-              size="md"
-              variant="ghost"
-              _hover={{ bg: 'teal.500', color: 'white' }}
-              rounded={'full'}
-            />
-          </Stack>
+
+          <VStack align="center" justify="center" mt="6">
+
+            <Button
+              leftIcon={<FaGoogle />}
+              colorScheme="red"
+              size="lg"
+              fontWeight="medium"
+              variant="outline"
+            >
+              Register with Google
+            </Button>
+            </VStack>
+
         </Box>
       </Container>
     </Flex>

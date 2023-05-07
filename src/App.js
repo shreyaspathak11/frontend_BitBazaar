@@ -9,12 +9,14 @@ import Register from "./components/Register";
 import Terms from "./components/Terms";
 import Newsletter from "./components/Newsletter";
 import Login from "./components/LogIn";
+import WelcomePage from "./components/WelcomePage";
 
 function App() {
   return (
     <Router>
       <Header />
       <Routes>
+        <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/" element={<Home />} />
         <Route path="/coins" element={<Coins />} />
         <Route path="/coins/:coinId" element={<CoinDetails />} />

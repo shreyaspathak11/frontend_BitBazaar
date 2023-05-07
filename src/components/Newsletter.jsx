@@ -36,6 +36,7 @@ function Newsletter() {
       align="center"
       minH="100vh"
       bgGradient={bgGradient}
+      fontFamily={"Alkatra"}
     >
       <Box
         w="100%"
@@ -46,9 +47,10 @@ function Newsletter() {
         boxShadow="lg" 
         textColor={textColor}
         bgColor={bg}
+        
       >
         <Center mb={6}>
-          <Heading size="lg" fontWeight="bold">
+          <Heading size="lg" fontWeight="bold" fontFamily={"Alkatra"}>
             Subscribe to our Newsletter
           </Heading>
         </Center>
@@ -62,7 +64,7 @@ function Newsletter() {
               required
               mb={4}
             />
-            <Button type="submit" colorScheme="teal" size="md" mb={4}>
+            <Button type="submit" colorScheme="teal" size="md" mb={4} _hover={{ transform: "scale(1.05)", boxShadow:"3xl"}}>
               Subscribe
             </Button>
           </form>
