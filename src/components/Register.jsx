@@ -53,7 +53,7 @@ const Register = () => {
 
 
   return (
-    <Flex align="center" justify="center" minH="100vh" bgGradient={bgGradient}>
+    <Flex align="center" justify="center" minH="100vh" bgGradient={bgGradient} fontFamily={"Alkatra"}>
       <Box
         maxW={{ base: '90%', md: '80%' }}
         borderWidth="1px"
@@ -62,12 +62,13 @@ const Register = () => {
         bg={bg}
         boxShadow="md"
         textColor={textColor}
+        
       >
         <Box mb="6" textAlign="center">
           <Heading size="lg" fontWeight="bold" textColor={"teal.500"}>
             Register
           </Heading>
-          <Text fontSize="sm">Please fill in the form to create your account.</Text>
+          <Text fontSize="sm" >Please fill in the form to create your account.</Text>
         </Box>
         <form>
           <FormControl id="firstName" isRequired>
@@ -97,20 +98,21 @@ const Register = () => {
           <Button colorScheme="teal" size="lg" mt="6" w="100%" type="submit" onClick={registerUser} >
             Register
           </Button>
-        </form>
+          </form>
+          <Text mt="8" textAlign="center" fontWeight="bold">
+          Already have an account? 
+          </Text>
+          <Button colorScheme="teal" variant={"outline"} size="lg" mt="6" w="100%"  >
+          <Link href="./login" >
+            Login
+          </Link>
+          </Button>
+        
         <Text mt="8" textAlign="center" fontWeight="bold">
           OR
         </Text>
         <VStack align="center" justify="center" mt="6">
-          <Button
-            leftIcon={<FaFacebook />}
-            colorScheme="facebook"
-            size="lg"
-            variant="outline"
-            fontWeight="medium"
-          >
-            Register with Facebook
-          </Button>
+
           <Button
             leftIcon={<FaGoogle />}
             colorScheme="red"
