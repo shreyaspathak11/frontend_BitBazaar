@@ -13,7 +13,7 @@ import {
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
-import { FaFacebook, FaGoogle } from 'react-icons/fa';
+import { FaGoogle } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom"
 
 const Register = () => {

@@ -4,14 +4,13 @@ import {
   Flex,
   Text,
   Button,
-  
   useColorModeValue,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
 import SwiperCore, { Autoplay } from 'swiper/core';
-
+import { FaArrowRight } from 'react-icons/fa'
 SwiperCore.use([Autoplay]);
 
 const WelcomePage = () => {
@@ -32,7 +31,7 @@ const WelcomePage = () => {
               size={{ base: 'lg', md: 'xl' }}
               colorScheme="teal"
               fontWeight="bold"
-            //   rightIcon={<ArrowRightIcon />}
+              rightIcon={<FaArrowRight />}
               _hover={{ transform: "scale(1.05)",boxShadow: "xl" }}
               mb={{ base: '4', md: '8' }}
             >
