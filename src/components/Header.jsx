@@ -25,6 +25,7 @@ import { FiMenu } from 'react-icons/fi';
 import logo from '../assets/logo.png';
 
 function Navbar() {
+  const avatar = <Avatar size="sm" name="John Doe" src="https://bit.ly/dan-abramov" />
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isMobile, setIsMobile] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
@@ -42,7 +43,7 @@ function Navbar() {
   });
 
   return (
-    <Flex align="center" justify="space-between" p={4} bgColor={bg} boxShadow={"xl"} textColor={textColor} borderColor={borderColor}>
+    <Flex align="center"  p={4} bgColor={bg} justifyContent={"space-between"} boxShadow={"xl"} textColor={textColor} borderColor={borderColor}>
       <Box>
       <Link to={"/"}>
         <Image src={logo} alt="logo" boxSize="50px" css={{ "&:hover": { transform: "scale(1.05)", boxShadow: "xl", }, }} />
@@ -55,19 +56,18 @@ function Navbar() {
       {/* Mobile view */}
       {isMobile ?
         <>
-          <Avatar size="sm" name="John Doe" src="https://bit.ly/dan-abramov" />
-          <IconButton icon={<FiMenu />} aria-label="Open menu" variant="ghost" onClick={onOpen} />
+          
+          <IconButton icon={ avatar } aria-label="Open menu" variant="ghost" onClick={onOpen} />
           <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />
               <DrawerHeader>Menu</DrawerHeader>
               <DrawerBody>
-                <VStack spacing={4} align="stretch">
+                <VStack spacing={4} align="stretch" fontFamily={"Alkatra"}>
                   <Button variant="ghost" onClick={onClose}><Link to="/">Home</Link></Button>
                   <Button variant="ghost" onClick={onClose}><Link to="/coins">Coins</Link></Button>
                   <Button variant="ghost" onClick={onClose}><Link to="/exchanges">Exchange</Link></Button>
-
                   <Switch colorScheme="teal" isChecked={colorMode === "dark"} onChange={toggleColorMode} />
                 </VStack>
               </DrawerBody>
@@ -76,13 +76,18 @@ function Navbar() {
         </>
         :
         // Desktop view
-        <HStack spacing={4}>
-          <Button variant="ghost"><Link to="/">Home</Link></Button>
-          <Button variant="ghost"><Link to="/coins">Coins</Link></Button>
-          <Button variant="ghost"><Link to="/exchanges">Exchange</Link></Button>
-          <Avatar size="sm" name="John Doe" src="https://bit.ly/dan-abramov" />
-          <Switch colorScheme="teal" isChecked={colorMode === "dark"} onChange={toggleColorMode} />
+        <>
+        <HStack spacing={2} fontFamily={"Alkatra"}>
+          <Button variant="ghost" size={"lg"}><Link to="/">Home</Link></Button>
+          <Button variant="ghost" size={"lg"}><Link to="/coins">Coins</Link></Button>
+          <Button variant="ghost" size={"lg"}><Link to="/exchanges">Exchange</Link></Button>
+          
         </HStack>
+        <HStack ml={2}>
+        <Avatar size="lg" name="John Doe" src="https://bit.ly/dan-abramov" />
+          <Switch colorScheme="teal" isChecked={colorMode === "dark"} onChange={toggleColorMode} />
+          </HStack>
+        </>
       }
 
     </Flex>

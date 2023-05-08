@@ -10,7 +10,8 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import image1 from '../assets/newsletter.png';
+import image1 from '../assets/email.png';
+import gif from '../assets/thanks.gif';
 
 function Newsletter() {
   
@@ -72,6 +73,7 @@ function Newsletter() {
       
       <Center mb={6}>
       <Image src={image1} alt="newsletter" alignContent={"center"} mb={6} ml={30} mr={6} mt={6} />
+      
       </Center>
         <Center mb={6}>
           <Heading size="lg" fontWeight="bold" fontFamily={"Alkatra"}>
@@ -98,10 +100,10 @@ function Newsletter() {
         ) : (
           
           <Center flexDirection="column">
+          <Image src={gif} alt='Thank' alignContent={"center"} mb={2} ml={2} mr={2} mt={2} h={"100px"} w={"100px"}/> 
             <Text mb={2} fontSize="lg">
               You are subscribed to our newsletter. Enjoy!
             </Text>
-            <Box w={8} h={8} bg="blue.500" borderRadius="full" />
           </Center>
         )}
       </Box>
