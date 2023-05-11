@@ -26,7 +26,7 @@ const Footer = () => {
             size="md"
             variant="ghost"
             _hover={{ bg: 'white', color: 'teal.500', transform: 'scale(1.05)', boxShadow: 'xl' }}
-            onClick={() => window.open('https://twitter.com/')}
+            onClick={() => window.open("https://twitter.com/Shreyas11_11")}
           />
           <IconButton
             aria-label="Instagram"
@@ -34,7 +34,7 @@ const Footer = () => {
             size="md"
             variant="ghost"
             _hover={{ bg: 'white', color: 'teal.500', transform: 'scale(1.05)', boxShadow: 'xl' }}
-            onClick={() => window.open('https://www.instagram.com/')}
+            onClick={() => window.open('https://www.https://www.instagram.com/shreyas_pathak_11/')}
           />
           <IconButton
             aria-label="LinkedIn"
@@ -42,7 +42,7 @@ const Footer = () => {
             size="md"
             variant="ghost"
             _hover={{ bg: 'white', color: 'teal.500', transform: 'scale(1.05)', boxShadow: 'xl' }}
-            onClick={() => window.open('https://www.linkedin.com/')}
+            onClick={() => window.open('https://www.linkedin.com/in/shreyas-pathak-60929422b')}
           />
         </Stack>
 

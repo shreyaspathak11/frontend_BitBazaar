@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Heading, Text, Button, Image, useColorModeValue} from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Button, Image, useColorModeValue, HStack} from "@chakra-ui/react";
 import graphics1 from "../assets/graphics1.png";
 import graphics2 from "../assets/graphics2.png";
 import { Link } from "react-router-dom";
@@ -28,22 +28,26 @@ function CreativeSection() {
           borderRadius="md"
           css={{"&:hover": {transform: "scale(1.05)",boxShadow: "xl",},}}
         />
-        <Box maxW="500px" mb={{ base: 8, md: 0 }} textAlign="center">
+        <Box maxW="500px" mb={{ base: 8, md: 0 }} textAlign="center" alignItems={"center"}>
           <Heading size="2xl"  mb={4} fontFamily={"Alkatra"} css={{"&:hover": {color:"teal", transform: "scale(1.05)",boxShadow: "xl",},}}>
             Trade with Confidence
           </Heading>
           <Text size="xl"  mb={8} css={{"&:hover": {transform: "scale(1.05)",boxShadow: "xl",},}}>
           At BitBazaar, we take pride in providing a secure and user-friendly trading environment that empowers traders of all levels
           </Text>
-          <Button
-            colorScheme="teal" 
-            alignItems={"center"}
-            _hover={{ bg: "white", color: "teal.500", transform: "scale(1.05)",boxShadow: "xl"}}
-          >
-            <Link to="/register">
-            Get Started
+          <HStack  justifyContent="center" direction={{ base: 'column', md: 'row' }}  w={"full"} overflowX={"auto"} p={"8"}>
+          <Button colorScheme="teal" variant="solid" size="lg"  _hover={{ transform:"scale(1.05)", colorScheme:"Yellow"}} >
+          <Link to="/exchanges">
+            Exchanges
             </Link>
           </Button>
+
+          <Button colorScheme="teal" size="lg" _hover={{ transform:"scale(1.05)", colorScheme:"Yellow"}} >
+          <Link to="/Coins">
+            Explore Coins
+            </Link>
+          </Button>
+        </HStack>
         </Box>
         <Image
           src={graphics2}

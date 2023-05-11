@@ -7,10 +7,13 @@ import Register from "./components/Register";
 import Terms from "./components/Terms";
 import Newsletter from "./components/Newsletter";
 import Login from "./components/LogIn";
-
+  
 
 function App() {
+
+
   return (
+
     <>    
     <Router>
       <Routes>

@@ -7,6 +7,7 @@ import {
   Text,
   Image,
   useColorModeValue,
+  HStack,
 } from '@chakra-ui/react';
 
 import heroImage from '../assets/growth.png';
@@ -28,7 +29,7 @@ function Hero() {
       bgGradient={bgGradient}
       color="white"
     >
-      <Box w={{ base: 'full', md: '50%' }} pr={{ md: '8' }}>
+      <Box w={{ base: 'full', md: '50%' }} pr={{ md: '8' }} d="flex" justifyContent="center">
         <Heading
           as="h1"
           size="4xl"
@@ -44,14 +45,19 @@ function Hero() {
         <Text fontSize="lg" mb="8" size="3xl" textColor={textColor} fontFamily={"Alkatra"} _hover={{ transform:"scale(1.05)"}}>
           Your one-stop shop for learning and trading in Cryptocurrencies.
         </Text>
-        <Flex direction={{ base: 'column', md: 'row' }} spacing="4">
-          <Button colorScheme="teal" size="lg" _hover={{ transform:"scale(1.05)", colorScheme:"Yellow"}} >
-          <Link to="/register">
-            Get Started
+        <HStack  direction={{ base: 'column', md: 'row' }}  w={"full"} overflowX={"auto"} p={"8"}>
+          <Button colorScheme="teal" size="lg"  _hover={{ transform:"scale(1.05)", colorScheme:"Yellow"}} >
+          <Link to="/exchanges">
+            Exchanges
             </Link>
           </Button>
-
-        </Flex>
+ 
+          <Button colorScheme="teal" size="lg" _hover={{ transform:"scale(1.05)", colorScheme:"Yellow"}} >
+          <Link to="/Coins">
+            Explore Coins
+            </Link>
+          </Button>
+        </HStack>
       </Box>
       <Box
         w={{ base: 'full', md: '50%' }}

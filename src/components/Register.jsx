@@ -12,14 +12,18 @@ import {
   Button,
   useColorModeValue,
   VStack,
+
+  useToast,
 } from '@chakra-ui/react';
-import { FaGoogle } from 'react-icons/fa';
+
 import { useNavigate } from "react-router-dom"
+import {GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
 
 const Register = () => {
   const bgGradient = useColorModeValue('linear(to-r, teal.200, green.200)', 'gray.700');
   const textColor = useColorModeValue('gray.800', 'white');
   const bg = useColorModeValue('white', 'gray.800');
+  const toast = useToast();
 
       const navigate = useNavigate()
 
@@ -52,6 +56,42 @@ const Register = () => {
       }
 
 
+    //  GOOGLE LOGIN
+      const handleFailure = (result) => {
+        alert(result);
+      };
+    
+      const handleLogin = async (googleData) => {
+        const res = await fetch('/api/google-login', {
+          method: 'POST',
+          body: JSON.stringify({
+            token: googleData.tokenId,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          
+        });
+
+        
+        const data = await res.json();
+        if (data) {
+          localStorage.setItem('loginData', JSON.stringify(data));
+          toast({
+            title: "Login successful!",
+            status: "success",
+            duration: 30000,
+            isClosable: true,
+          });
+          window.location.href = './home'
+        } else {
+          alert('Please check your username and password')
+        }
+        
+        // store returned user somehow
+        
+      };
+
   return (
     <Flex align="center" justify="center" minH="100vh" bgGradient={bgGradient} fontFamily={"Alkatra"}>
       <Box
@@ -71,6 +111,7 @@ const Register = () => {
           <Text fontSize="sm" >Please fill in the form to create your account.</Text>
         </Box>
         <form>
+        
           <FormControl id="firstName" isRequired>
             <FormLabel>First Name</FormLabel>
             <Input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Shreyas" />
@@ -100,28 +141,26 @@ const Register = () => {
           </Button>
           </form>
           <Text mt="8" textAlign="center" fontWeight="bold">
-          Already have an account? 
-          </Text>
-          <Button colorScheme="teal" variant={"outline"} size="lg" mt="6" w="100%"  >
-          <Link href="./login" >
+          Already have an account?  <br/> 
+          <Link href="./*" >
             Login
           </Link>
-          </Button>
+          </Text>
         
         <Text mt="8" textAlign="center" fontWeight="bold">
           OR
         </Text>
         <VStack align="center" justify="center" mt="6">
-
-          <Button
-            leftIcon={<FaGoogle />}
-            colorScheme="red"
-            size="lg"
-            fontWeight="medium"
-            variant="outline"
-          >
-            Register with Google
-          </Button>
+        <GoogleOAuthProvider clientId="263875664359-hacvha6ocq97kbmjahvnq7c642nrh6i6.apps.googleusercontent.com">
+            <GoogleLogin
+              
+              buttonText="Log in with Google"
+              onSuccess={handleLogin}
+              onFailure={handleFailure}
+              
+              cookiePolicy={'single_host_origin'}
+            ></GoogleLogin>
+          </GoogleOAuthProvider>
         </VStack>
       </Box>
     </Flex>

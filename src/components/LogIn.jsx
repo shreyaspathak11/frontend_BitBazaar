@@ -16,7 +16,6 @@ import {
 import {  FaGoogle } from 'react-icons/fa';
 
 
-
 const Login = () => {
   const bg = useColorModeValue('linear(to-b, teal.100, teal.200)', 'gray.900');
   const textColor = useColorModeValue('gray.700', 'gray.100');
@@ -50,7 +49,7 @@ const Login = () => {
         duration: 30000,
         isClosable: true,
       });
-			window.location.href = '/'
+			window.location.href = './home'
 		} else {
 			alert('Please check your username and password')
 		}
