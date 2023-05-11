@@ -5,6 +5,7 @@ import { Container, HStack, Heading, VStack, Image, Text, useColorModeValue, Box
 import Loader from './Loader'
 import Error from './Error'
 
+
 const Exchanges = () => {
     const bgGradient = useColorModeValue('linear(to-r, teal.200, green.200)', 'gray.700');
     const textColor = useColorModeValue('gray.600', 'gray.400'); 
@@ -35,6 +36,8 @@ const Exchanges = () => {
     
     else{
     return (
+        
+
         <Box bgGradient={bgGradient} textColor={textColor}>
         <Container maxW={"container.xl"} centerContent>
             { loading ? ( 
@@ -56,12 +59,14 @@ const Exchanges = () => {
             )}
         </Container>
         </Box>
+  
+        
     );  
 }
 }
 
 const ExchangeCard = ({name, img, rank, url}) => (
-    <a href={url} target={"blank"}>     {/* target={"blank"} opens the link in same tab hence no wastage of tabs */}
+    
     <VStack w={"52"} shadow={"lg"} p={"8"} borderRadius={"lg"} transition={"all 0.3s"} m={"4"}
     css={{
         "&:hover": {
@@ -84,7 +89,7 @@ const ExchangeCard = ({name, img, rank, url}) => (
         </Text>
     </VStack>
 
-    </a>
+
     
 )
 

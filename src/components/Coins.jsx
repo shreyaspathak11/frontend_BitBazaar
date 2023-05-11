@@ -6,6 +6,7 @@ import Loader from './Loader'
 import Error from './Error'
 import { Link } from 'react-router-dom'
 
+
 const Coins = () => {
     const bgGradient = useColorModeValue('linear(to-r, teal.200, green.200)', 'gray.700');
     const textColor = useColorModeValue('gray.600', 'gray.400');
@@ -48,6 +49,7 @@ const Coins = () => {
     
     else{
     return (
+
         <Box bgGradient={bgGradient} textColor={textColor}>
         <Container maxW={"container.xl"} centerContent >
             { loading ? ( 
@@ -96,6 +98,7 @@ const Coins = () => {
             )}
         </Container>
         </Box>
+
     );  
 }
 }

@@ -65,7 +65,7 @@ function Navbar() {
               <DrawerHeader>Menu</DrawerHeader>
               <DrawerBody>
                 <VStack spacing={4} align="stretch" fontFamily={"Alkatra"}>
-                  <Button variant="ghost" onClick={onClose}><Link to="/">Home</Link></Button>
+                  <Button variant="ghost" onClick={onClose}><Link to="/home">Home</Link></Button>
                   <Button variant="ghost" onClick={onClose}><Link to="/coins">Coins</Link></Button>
                   <Button variant="ghost" onClick={onClose}><Link to="/exchanges">Exchange</Link></Button>
                   <Switch colorScheme="teal" isChecked={colorMode === "dark"} onChange={toggleColorMode} />

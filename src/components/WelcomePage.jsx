@@ -35,7 +35,7 @@ const WelcomePage = () => {
               _hover={{ transform: "scale(1.05)",boxShadow: "xl" }}
               mb={{ base: '4', md: '8' }}
             >
-            <Link to="/">
+            <Link to="/register">
               Continue
             </Link>
             </Button>

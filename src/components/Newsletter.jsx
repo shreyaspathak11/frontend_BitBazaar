@@ -13,6 +13,7 @@ import {
 import image1 from '../assets/email.png';
 import gif from '../assets/thanks.gif';
 
+
 function Newsletter() {
   
   const [email, setEmail] = useState('');
@@ -51,6 +52,7 @@ function Newsletter() {
   const textColor = useColorModeValue('Teal', 'white');
   
   return (
+    <>
 
     <Flex
       direction="column"
@@ -108,6 +110,8 @@ function Newsletter() {
         )}
       </Box>
     </Flex>
+
+    </>
   );
 }
 

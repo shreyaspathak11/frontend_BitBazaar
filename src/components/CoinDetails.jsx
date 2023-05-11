@@ -7,6 +7,7 @@ import Chart from "./Chart";
 import Loader from "./Loader";
 import Error from "./Error";
 
+
 const CoinDetails = () => {
   const bgGradient = useColorModeValue('linear(to-r, teal.200, green.200)', 'gray.700');
 
@@ -194,8 +195,10 @@ const CoinDetails = () => {
       )}
     </Container>
   </Box>
+
   );
 };
+
 
 const Item = ({ title, value }) => (
   <HStack justifyContent={"space-between"} w={"full"} my={"4"}>
