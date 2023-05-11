@@ -78,7 +78,7 @@ function Navbar() {
         // Desktop view
         <>
         <HStack spacing={2} fontFamily={"Alkatra"}>
-          <Button variant="ghost" size={"lg"}><Link to="/">Home</Link></Button>
+          <Button variant="ghost" size={"lg"}><Link to="/home">Home</Link></Button>
           <Button variant="ghost" size={"lg"}><Link to="/coins">Coins</Link></Button>
           <Button variant="ghost" size={"lg"}><Link to="/exchanges">Exchange</Link></Button>
           

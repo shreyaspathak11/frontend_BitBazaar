@@ -8,7 +8,7 @@ import {
   IconButton,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaTwitter, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -21,12 +21,12 @@ const Footer = () => {
       <Container as={Flex} maxW="7xl" py="6" flexWrap="wrap" justifyContent="space-between" alignItems="center">
         <Stack direction="row" spacing={4}>
           <IconButton
-            aria-label="Twitter"
-            icon={<FaTwitter />}
+            aria-label="Github"
+            icon={<FaGithub />}
             size="md"
             variant="ghost"
             _hover={{ bg: 'white', color: 'teal.500', transform: 'scale(1.05)', boxShadow: 'xl' }}
-            onClick={() => window.open("https://twitter.com/Shreyas11_11")}
+            onClick={() => window.open("https://github.com/shreyaspathak11")}
           />
           <IconButton
             aria-label="Instagram"
@@ -34,7 +34,7 @@ const Footer = () => {
             size="md"
             variant="ghost"
             _hover={{ bg: 'white', color: 'teal.500', transform: 'scale(1.05)', boxShadow: 'xl' }}
-            onClick={() => window.open('https://www.https://www.instagram.com/shreyas_pathak_11/')}
+            onClick={() => window.open('https://www.instagram.com/shreyas_pathak_11/')}
           />
           <IconButton
             aria-label="LinkedIn"
@@ -50,7 +50,7 @@ const Footer = () => {
           <Text fontSize="lg" fontWeight="bold" mr={2}>Stay up to date</Text>
           <Box
             as={Link}
-            to="./newsletter"
+            to="/newsletter"
             rounded="full"
             bg="blue.500"
             color="white"

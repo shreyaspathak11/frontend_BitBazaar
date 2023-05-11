@@ -45,7 +45,7 @@ function Hero() {
         <Text fontSize="lg" mb="8" size="3xl" textColor={textColor} fontFamily={"Alkatra"} _hover={{ transform:"scale(1.05)"}}>
           Your one-stop shop for learning and trading in Cryptocurrencies.
         </Text>
-        <HStack  direction={{ base: 'column', md: 'row' }}  w={"full"} overflowX={"auto"} p={"8"}>
+        <HStack fontFamily={"Alkatra"} direction={{ base: 'column', md: 'row' }}  w={"full"} overflowX={"auto"} p={"8"}>
           <Button colorScheme="teal" size="lg"  _hover={{ transform:"scale(1.05)", colorScheme:"Yellow"}} >
           <Link to="/exchanges">
             Exchanges
