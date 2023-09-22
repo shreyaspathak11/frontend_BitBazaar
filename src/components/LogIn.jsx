@@ -11,12 +11,12 @@ import {
   Link,
   useToast,
   Flex,
-  VStack,
 } from '@chakra-ui/react';
-import {  FaGoogle } from 'react-icons/fa';
+
 
 
 const Login = () => {
+   const bgGradient = useColorModeValue('linear(to-r, teal.200, green.200)', 'gray.700');
   const bg = useColorModeValue('linear(to-b, teal.100, teal.200)', 'gray.900');
   const textColor = useColorModeValue('gray.700', 'gray.100');
   const toast = useToast();
@@ -56,7 +56,7 @@ const Login = () => {
 	}
 
   return (
-    <Flex minH="100vh" align="center" justify="center" textColor={textColor} fontFamily={"Alkatra"}>
+    <Flex minH="100vh" bgGradient={bgGradient} align="center" justify="center" textColor={textColor} fontFamily={"Alkatra"}>
       <Container
         maxW={{ base: 'xs', md: 'md' }}
         bg={bg}
@@ -86,30 +86,12 @@ const Login = () => {
               </Link>
             </Text>
 
-            <Link color="teal.500" href="#" fontWeight="semibold">
+            <Link color="teal.500" href="forgot" fontWeight="semibold">
               Forgot Password?
             </Link>
           </Stack>
         </Stack>
-        <Box mt={5}>
-          <Text fontWeight="semibold" mb={3} textAlign={"center"}>
-            Or sign in with
-          </Text>
-
-          <VStack align="center" justify="center" mt="6">
-
-            <Button
-              leftIcon={<FaGoogle />}
-              colorScheme="red"
-              size="lg"
-              fontWeight="medium"
-              variant="outline"
-            >
-              Register with Google
-            </Button>
-            </VStack>
-
-        </Box>
+  
       </Container>
     </Flex>
   );

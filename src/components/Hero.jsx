@@ -44,6 +44,7 @@ function Hero() {
         </Heading>
         <Text fontSize="lg" mb="8" size="3xl" textColor={textColor} fontFamily={"Alkatra"} _hover={{ transform:"scale(1.05)"}}>
           Your one-stop shop for learning and trading in Cryptocurrencies.
+        A one-stop-shop for all your cryptocurrency needs. Discover, trade, and learn with our user-friendly platform designed to empower you with the latest insights and tools to navigate the dynamic world of digital assets. Join the community of savvy investors and explore the future of finance with Bitbazaar today."
         </Text>
         <HStack fontFamily={"Alkatra"} direction={{ base: 'column', md: 'row' }}  w={"full"} overflowX={"auto"} p={"8"}>
           <Button colorScheme="teal" size="lg"  _hover={{ transform:"scale(1.05)", colorScheme:"Yellow"}} >
