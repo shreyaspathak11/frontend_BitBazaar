@@ -106,7 +106,7 @@ function Navbar() {
             <Menu>
               <MenuButton as={Avatar} size="lg" name="John Doe" src="https://bit.ly/dan-abramov" onClick={() => setLogoutDropdown(!logoutDropdown)} />
               <MenuList>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                <MenuItem   onClick={handleLogout} fontWeight="bold" fontFamily={"Alkatra"} >Logout</MenuItem>
               </MenuList>
             </Menu>
             <Switch colorScheme="teal" isChecked={colorMode === "dark"} onChange={toggleColorMode} />
