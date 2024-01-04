@@ -9,6 +9,7 @@ import {
   Input,
   Text,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react';
 import image1 from '../assets/email.png';
 import gif from '../assets/thanks.gif';
@@ -18,7 +19,8 @@ function Newsletter() {
   
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
-  
+  const toast = useToast();
+
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -28,7 +30,7 @@ function Newsletter() {
     async function registerMember(event) {
       event.preventDefault()
   
-      const response = await fetch('http://localhost:5000/api/newsletter', {
+      const response = await fetch('https://bitbazaar-api.vercel.app/api/newsletter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +45,12 @@ function Newsletter() {
     setIsSubscribed(true);
       }
       else if (data.status === 'error') {
-        alert('Already Subscribed!')
+        toast({
+          title: 'Already Subscribed!',
+          description: "Email already exists in our database.",
+          status: 'error',
+        })
+
         
       }
   };
@@ -93,9 +100,12 @@ function Newsletter() {
               onChange={handleEmailChange}
               required
               mb={4}
+              autoComplete='email'
               textColor={"gray.700"}
             />
-            <Button type="submit" colorScheme="teal" size="md" mb={4} _hover={{ transform: "scale(1.05)", boxShadow:"3xl"}}>
+            <Button type="submit" colorScheme="teal" size="md" mb={4} _hover={{ transform: "scale(1.05)", boxShadow:"3xl"}}
+            display={"flex"} justifyContent={"center"} alignItems={"center"}
+            >
               Subscribe
             </Button>
           </form>

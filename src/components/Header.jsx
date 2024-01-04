@@ -121,7 +121,7 @@ function Navbar({ setAuthenticated }) {
           </HStack>
 
           <HStack ml={2}>
-            <Switch colorScheme="teal" isChecked={colorMode === "dark"} onChange={toggleColorMode} />
+            <Switch colorScheme="teal" size="lg" isChecked={colorMode === "dark"} onChange={toggleColorMode} />
             <Button onClick={() => handleLogout(setAuthenticated)} fontWeight="bold" fontFamily={"Alkatra"}>
             Logout</Button>
           </HStack>

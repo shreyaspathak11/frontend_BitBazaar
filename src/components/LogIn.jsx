@@ -31,7 +31,7 @@ const Login = ({ setAuthenticated }) => {
     setLoading(true); // Set loading to true when the login process starts
 
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('https://bitbazaar-api.vercel.app/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const Login = ({ setAuthenticated }) => {
         isClosable: true,
       });
     } finally {
-      setLoading(false); // Set loading to false when the login process completes
+      setLoading(false); 
     }
   }
 
@@ -100,7 +100,7 @@ const Login = ({ setAuthenticated }) => {
             placeholder="Email Address"
             size="lg"
             rounded="full"
-            autoComplete="email" // Add autocomplete attribute
+            autoComplete="email" 
           />
         </Box>
         <Box mb={6}>
@@ -112,7 +112,7 @@ const Login = ({ setAuthenticated }) => {
             placeholder="Password"
             size="lg"
             rounded="full"
-            autoComplete="current-password" // Add autocomplete attribute
+            autoComplete="current-password" 
           />
         </Box>
         <Stack spacing={6}>
@@ -123,7 +123,7 @@ const Login = ({ setAuthenticated }) => {
             rounded={'full'}
             size="lg"
             onClick={loginUser}
-            disabled={loading} // Disable the button when loading is true
+            disabled={loading} 
           >
             {loading ? <Spinner size="sm" color="white" /> : 'Login'}
           </Button>
