@@ -39,7 +39,7 @@ function Navbar({ setAuthenticated }) {
   // Function to handle logout
   const handleLogout = async (setAuthenticated) => {
     try {
-      const response = await fetch('http://localhost:5000/api/logout', {
+      const response = await fetch('https://bitcoin-backend.vercel.app/api/logout', {
         method: 'GET',
       });
 
@@ -123,7 +123,8 @@ function Navbar({ setAuthenticated }) {
           <HStack ml={2}>
             <Switch colorScheme="teal" size="lg" isChecked={colorMode === "dark"} onChange={toggleColorMode} />
             <Button onClick={() => handleLogout(setAuthenticated)} fontWeight="bold" fontFamily={"Alkatra"}>
-            Logout</Button>
+            Logout
+            </Button>
           </HStack>
         </>
       }
