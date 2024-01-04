@@ -30,7 +30,7 @@ function Newsletter() {
     async function registerMember(event) {
       event.preventDefault()
   
-      const response = await fetch('https://bitbazaar-api.vercel.app/api/newsletter', {
+      const response = await fetch('https://bitcoin-backend.vercel.app/api/newsletter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

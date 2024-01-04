@@ -31,7 +31,7 @@ const Login = ({ setAuthenticated }) => {
     setLoading(true); // Set loading to true when the login process starts
 
     try {
-      const response = await fetch('https://bitbazaar-api.vercel.app/api/login', {
+      const response = await fetch('https://bitcoin-backend.vercel.app/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
