@@ -135,9 +135,6 @@ const Login = ({ setAuthenticated }) => {
               </Link>
             </Text>
 
-            <Link color="teal.500" href="forgot" fontWeight="semibold">
-              Forgot Password?
-            </Link>
           </Stack>
         </Stack>
       </Container>
