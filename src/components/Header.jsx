@@ -63,7 +63,7 @@ function Navbar() {
   return (
     <Flex align="center" p={4} bgColor={bg} justifyContent={"space-between"} boxShadow={"xl"} textColor={textColor} borderColor={borderColor}>
       <Box>
-        <Link to={"/"}>
+        <Link to={"/home"}>
           <Image src={logo} alt="logo" boxSize="50px" css={{ "&:hover": { transform: "scale(1.05)", boxShadow: "xl", }, }} />
         </Link>
         <Box>
