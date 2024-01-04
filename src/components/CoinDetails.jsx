@@ -86,7 +86,7 @@ const CoinDetails = () => {
       }
     };
     fetchCoin();
-  }, [params.coinId, currency, days] );
+  }, [params.coinId, currency, days, params] );
 
   if (error) return <Error />;
 

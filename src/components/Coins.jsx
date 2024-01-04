@@ -5,7 +5,8 @@ import { Container, HStack, Heading, VStack, Image, Text, Button, RadioGroup, Ra
 import Loader from './Loader'
 import Error from './Error'
 import { Link } from 'react-router-dom'
-
+import Header from './Header'
+import Footer from './Footer'
 
 const Coins = () => {
     const bgGradient = useColorModeValue('linear(to-r, teal.200, green.200)', 'gray.700');
@@ -48,8 +49,8 @@ const Coins = () => {
     if(error) return <div><Error /></div>
     
     else{
-    return (
-
+    return (<>
+            <Header />
         <Box bgGradient={bgGradient} textColor={textColor}>
         <Container maxW={"container.xl"} centerContent >
             { loading ? ( 
@@ -98,7 +99,8 @@ const Coins = () => {
             )}
         </Container>
         </Box>
-
+    <Footer />
+</>
     );  
 }
 }

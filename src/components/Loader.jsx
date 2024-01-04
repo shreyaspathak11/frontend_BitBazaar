@@ -4,7 +4,7 @@ import React from 'react'
 const Loader = () => {
   return (
     <div>
-      <VStack h={"90vh"} justifyContent={"center"}>
+      <VStack h={"100vh"} justifyContent={"center"}>
       <Box transform={"scale(3)"}>
         <Spinner size={"xl"} />
       </Box>

@@ -18,37 +18,51 @@ import {
   useColorMode,
   Switch,
   useColorModeValue,
-  Avatar,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem
+  useToast,
 } from "@chakra-ui/react";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import logo from '../assets/logo.png';
 
-function Navbar() {
-  
-  const avatar = <Avatar size="sm" name="John Doe" src="https://bit.ly/dan-abramov" />
+function Navbar({ setAuthenticated }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isMobile, setIsMobile] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   const navigate = useNavigate();
-  const location = useLocation(); // Get current location
+  const location = useLocation(); 
+  const toast = useToast();
 
   const bg = useColorModeValue('#A7FFE4', 'gray.900');
   const textColor = useColorModeValue('gray.600', 'gray.400');
   const borderColor = useColorModeValue('gray.200', 'gray.600');
 
-  // State to control the logout dropdown
-  const [logoutDropdown, setLogoutDropdown] = useState(false);
-
   // Function to handle logout
-  const handleLogout = () => {
-    // Perform logout actions (clear session, etc.)
-    // For now, let's simulate a logout by redirecting to the login page
-    navigate('/login');
+  const handleLogout = async (setAuthenticated) => {
+    try {
+      const response = await fetch('http://localhost:5000/api/logout', {
+        method: 'GET',
+      });
+
+      const data = await response.json();
+
+      if (data.auth === false) {
+        toast({
+          title: 'Logout successful!',
+          status: 'success',
+          isClosable: true,
+        });
+        navigate('/');
+        setAuthenticated(false);
+      } else {
+        toast({
+          title: 'Logout failed!',
+          status: 'error',
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   };
 
   // handle window resize to toggle isMobile state
@@ -74,7 +88,7 @@ function Navbar() {
       {/* Mobile view */}
       {isMobile ?
         <>
-          <IconButton icon={avatar} aria-label="Open menu" variant="ghost" onClick={onOpen} />
+          <IconButton aria-label="Open menu" variant="ghost" onClick={onOpen} />
           <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
             <DrawerOverlay />
             <DrawerContent>
@@ -82,10 +96,15 @@ function Navbar() {
               <DrawerHeader>Menu</DrawerHeader>
               <DrawerBody>
                 <VStack spacing={4} align="stretch" fontFamily={"Alkatra"}>
-                  {/* Conditionally render the "Home" button */}
-                  {location.pathname !== '/home' && <Button variant="ghost" onClick={onClose}><Link to="/home">Home</Link></Button>}
-                  <Button variant="ghost" onClick={onClose}><Link to="/coins">Coins</Link></Button>
-                  <Button variant="ghost" onClick={onClose}><Link to="/exchanges">Exchange</Link></Button>
+                  {location.pathname !== '/home' && (
+                    <Button variant="ghost" onClick={onClose}><Link to="/home">Home</Link></Button>
+                  )}
+                  {location.pathname !== '/coins' && (
+                    <Button variant="ghost" onClick={onClose}><Link to="/coins">Coins</Link></Button>
+                  )}
+                  {location.pathname !== '/exchanges' && (
+                    <Button variant="ghost" onClick={onClose}><Link to="/exchanges">Exchange</Link></Button>
+                  )}
                   <Switch colorScheme="teal" isChecked={colorMode === "dark"} onChange={toggleColorMode} />
                 </VStack>
               </DrawerBody>
@@ -96,20 +115,15 @@ function Navbar() {
         // Desktop view
         <>
           <HStack spacing={2} fontFamily={"Alkatra"}>
-            {/* Conditionally render the "Home" button */}
             {location.pathname !== '/home' && <Button variant="ghost" size={"lg"}><Link to="/home">Home</Link></Button>}
-            <Button variant="ghost" size={"lg"}><Link to="/coins">Coins</Link></Button>
-            <Button variant="ghost" size={"lg"}><Link to="/exchanges">Exchange</Link></Button>
+            {location.pathname !== '/coins' && <Button variant="ghost" size={"lg"}><Link to="/coins">Coins</Link></Button>}
+            {location.pathname !== '/exchanges' && <Button variant="ghost" size={"lg"}><Link to="/exchanges">Exchange</Link></Button>}
           </HStack>
+
           <HStack ml={2}>
-            {/* Avatar and Logout Dropdown */}
-            <Menu>
-              <MenuButton as={Avatar} size="lg" name="John Doe" src="https://bit.ly/dan-abramov" onClick={() => setLogoutDropdown(!logoutDropdown)} />
-              <MenuList>
-                <MenuItem   onClick={handleLogout} fontWeight="bold" fontFamily={"Alkatra"} >Logout</MenuItem>
-              </MenuList>
-            </Menu>
             <Switch colorScheme="teal" isChecked={colorMode === "dark"} onChange={toggleColorMode} />
+            <Button onClick={() => handleLogout(setAuthenticated)} fontWeight="bold" fontFamily={"Alkatra"}>
+            Logout</Button>
           </HStack>
         </>
       }

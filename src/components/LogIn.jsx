@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -11,77 +11,126 @@ import {
   Link,
   useToast,
   Flex,
+  Spinner, // Import Spinner
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
-
-
-const Login = () => {
-   const bgGradient = useColorModeValue('linear(to-r, teal.200, green.200)', 'gray.700');
-  const bg = useColorModeValue('linear(to-b, teal.100, teal.200)', 'gray.900');
+const Login = ({ setAuthenticated }) => {
+  const bgGradient = useColorModeValue('linear(to-r, teal.200, green.200)', 'gray.700');
   const textColor = useColorModeValue('gray.700', 'gray.100');
   const toast = useToast();
 
-  
-  const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false); // Initialize loading state
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-	async function loginUser(event) {
-		event.preventDefault()
+  async function loginUser(event) {
+    event.preventDefault();
 
-		const response = await fetch('http://localhost:5000/api/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				email,
-				password,
-			}),
-		})
+    setLoading(true); // Set loading to true when the login process starts
 
-		const data = await response.json()
+    try {
+      const response = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
-		if (data.user) {
-			localStorage.setItem('token', data.user)
-			toast({
-        title: "Login successful!",
-        status: "success",
-        duration: 30000,
+      if (!response.ok) {
+        throw new Error('Login failed. Please check your credentials.');
+      }
+
+      const data = await response.json();
+
+      if (data.user) {
+        localStorage.setItem('token', data.user);
+        toast({
+          title: 'Login successful!',
+          status: 'success',
+          isClosable: true,
+        });
+        setAuthenticated(true);
+        navigate('/home');
+      } else {
+        toast({
+          title: 'Login failed!',
+          description: data.error || 'Please check your credentials and try again.',
+          status: 'error',
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      toast({
+        title: 'Login failed!',
+        description: 'An unexpected error occurred. Please try again.',
+        status: 'error',
         isClosable: true,
       });
-			window.location.href = './home'
-		} else {
-			alert('Please check your username and password')
-		}
-	}
+    } finally {
+      setLoading(false); // Set loading to false when the login process completes
+    }
+  }
 
   return (
-    <Flex minH="100vh" bgGradient={bgGradient} align="center" justify="center" textColor={textColor} fontFamily={"Alkatra"}>
+    <Flex minH="100vh" bgGradient={bgGradient} align="center" justify="center" textColor={textColor} fontFamily={'Alkatra'}>
       <Container
         maxW={{ base: 'xs', md: 'md' }}
-        bg={bg}
+        bg={'white'}
         boxShadow={'lg'}
         rounded={'lg'}
         p={6}
         direction="column"
       >
-        <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} textAlign="center" fontFamily={"Alkatra"} mb={5}>
+        <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} textAlign="center" fontFamily={'Alkatra'} mb={5}>
           Login to Your Account
         </Heading>
         <Box mt={8} mb={3}>
-          <Input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Address" size="lg" rounded="full" />
+          <Input
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email Address"
+            size="lg"
+            rounded="full"
+            autoComplete="email" // Add autocomplete attribute
+          />
         </Box>
         <Box mb={6}>
-          <Input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" size="lg" rounded="full" />
+          <Input
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            size="lg"
+            rounded="full"
+            autoComplete="current-password" // Add autocomplete attribute
+          />
         </Box>
         <Stack spacing={6}>
-          <Button bg={'teal.500'} color={'white'} _hover={{ bg: 'teal.600' }} rounded={'full'} size="lg" onClick={loginUser}>
-            Login
+          <Button
+            bg={'teal.500'}
+            color={'white'}
+            _hover={{ bg: 'teal.600' }}
+            rounded={'full'}
+            size="lg"
+            onClick={loginUser}
+            disabled={loading} // Disable the button when loading is true
+          >
+            {loading ? <Spinner size="sm" color="white" /> : 'Login'}
           </Button>
           <Stack direction={{ base: 'column', md: 'row' }} align={'center'} justify={'space-between'}>
             <Text fontSize="md">
               Don't have an account?{' '}
-              <Link color="teal.500" href="register" fontWeight="semibold" >
+              <Link color="teal.500" href="register" fontWeight="semibold">
                 Sign Up
               </Link>
             </Text>
@@ -91,7 +140,6 @@ const Login = () => {
             </Link>
           </Stack>
         </Stack>
-  
       </Container>
     </Flex>
   );
