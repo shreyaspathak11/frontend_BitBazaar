@@ -69,7 +69,7 @@ const Login = ({ setAuthenticated }) => {
       console.error('Error during login:', error);
       toast({
         title: 'Login failed!',
-        description: 'An unexpected error occurred. Please try again.',
+        description: 'Invalid Credentials',
         status: 'error',
         isClosable: true,
       });
