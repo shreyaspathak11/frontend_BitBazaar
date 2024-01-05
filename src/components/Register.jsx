@@ -59,14 +59,14 @@ const Register = () => {
       } else if (data.status === 'error') {
         toast({
           title: 'Registration Failed!',
-          status: 'error',
+          status: 'User Already Exists!',
           isClosable: true,
         });
       }
     } else {
       toast({
-        title: 'Please agree to our terms and conditions',
-        status: 'warning',
+        title: 'Registration',
+        status: 'server 500',
         isClosable: true,
       });
     }
